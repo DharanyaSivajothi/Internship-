@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Application Form</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    body {
+        margin: 50px 0px;
+        padding: 0px;
+        text-align: center;
+    }
+
+    #grad {
+        background-image: linear-gradient(to right, rgb(85, 100, 190), rgb(5, 1, 24));
+    }
+
+    p {
+        text-align: center;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: x-large;
+    }
+
+    form {
+        background-image: linear-gradient(to right, rgb(85, 100, 190), rgb(5, 1, 24));
+        display: inline-block;
+        width: 800px;
+        color: aliceblue;
+        padding: 15px;
+        background-color: rgb(22, 17, 88);
+        border-radius: 2%;
+        font-style: oblique;
+        text-align: left;
+    }
+</style>
+
+<body id="grad">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <center>
+        <p><b><u>Application Form </u></b></p><br>
+    </center>
+
+    <form name="reg_form" onsubmit="return validate()">
+
+        <div class="form-group">
+
+            <label for="fname">Full Name</label>
+            <input type="text" class="form-control" name="fname" />
+            <span id="fnameErr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address </label>
+            <input type="email" class="form-control" name="email">
+            <span id="emailErr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile Number </label>
+            <input type="text" class="form-control" name="mobile">
+            <span id="mobileErr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="country">Country Name </label>
+            <select class="form-control" name="country">
+                <option value=""><a style="color: gray;">-Select Your Country-</a></option>
+                <option value="India">India</option>
+                <option value="Japan">Japan</option>
+                <option value="USA">USA</option>
+                <option value="Italy">Italy</option>
+                <option value="Canada">Canada</option>
+                <option value="Spain">Spain</option>
+                <option value="France">France</option>
+            </select>
+            <span id="countryErr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender </label>
+            <input type="radio" name="gender" value="Male" />Male
+            <input type="radio" name="gender" value="Female" />Female
+            <span id="genderErr" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="hobby" placeholder="(optional)">Hobbies  <a style="font-size:13spx;">(*optional)</a></label><br>
+            <input type="checkbox" id="hobbies" name="hobby" value="Sports">
+            <label for="hobby"> Sports</label><br>
+            <input type="checkbox" id="hobbies" name="hobby" value="Movies">
+            <label for="hobby"> Movies</label><br>
+            <input type="checkbox" id="hobbies" name="hobby" value="Music">
+            <label for="hobby"> Music</label><br>
+            <span id="hobbyErr" class="text-danger"></span>
+        </div>
+        <br>
+        <div>
+            <button type="submit" class="btn btn-success" >Register</button>
+    </form>
+    </div>
+    <script>
+        function validate() {
+            var fname = document.reg_form.fname;
+            var email = document.reg_form.email;
+            var mobile = document.reg_form.mobile;
+            var country = document.reg_form.country;
+            var gender = document.reg_form.gender;
+            var hobby = document.reg_form.hobby;
+        
+
+            if (fname.value.length <= 0) {
+                document.getElementById('fnameErr').innerHTML = "First Name required";
+                fname.focus();
+                return false;
+            }
+            else{
+                document.getElementById('fnameErr').innerHTML = "";
+
+            }
+
+            if (email.value.length <= 0) {
+                document.getElementById('emailErr').innerHTML = "Email required";
+                email.focus();
+                return false;
+            }
+            else{
+                document.getElementById('emailErr').innerHTML = "";
+            }
+
+
+            if (mobile.value.length <= 9) {
+                document.getElementById('mobileErr').innerHTML = "Mobile number required";
+                mobile.focus();
+                return false;
+              }
+              else{
+                document.getElementById('mobileErr').innerHTML = "";
+            }
+              
+
+            if (country.value == "") {
+                document.getElementById('countryErr').innerHTML = "Select Your Country";
+                country.focus();
+                return false;
+              }
+              else{
+                document.getElementById('countryErr').innerHTML = "";
+            }
+
+            if (gender.value == "") {
+                document.getElementById('genderErr').innerHTML = "Choose the Gender";
+               // gender.focus();
+                return false;
+               }
+               else {
+                document.getElementById('genderErr').innerHTML = "";
+             }
+
+
+            alert("Form Submitted");
+            
+        }
+
+
+    </script>
+</body>
+
+</html>
