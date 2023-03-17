@@ -1,0 +1,164 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .passwordInput {
+                margin-top: 5%;
+                text-align: center;
+            }
+    
+            h4 {
+                margin-top: -20px;
+                text-align: center;
+            }
+    
+            #grad {
+            background-image: linear-gradient(to right, rgb(27, 124, 27), rgb(220, 255, 93));
+        }
+    
+    
+            body {
+                margin: 50px 0px;
+                padding: 0px;
+                text-align: center;
+            }
+    
+            form {
+                display: inline-block;
+                text-align: left;
+                width: 800px;
+                color: aliceblue;
+                padding: 25px;
+                width: 400px; 
+    
+            }
+    
+            button {
+                margin-top: 20px;
+                margin-left: 130px;
+            }
+    
+            .displayBadge {
+                margin-top: 5%;
+                display: none;
+                text-align: center;
+            }
+        </style>
+</head>
+
+<body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <h4>Sign Up</h4><br/><br/>
+
+    <form name="reg_form" id="grad" onsubmit="return StrengthChecker()">
+        <div class="form-group">
+
+            <label for="fname">User Name</label>
+            <input type="text" class="form-control" name="fname" />
+            <span id="fnameErr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address </label>
+            <input type="email" class="form-control" name="email">
+            <span id="emailErr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password </label>
+            <input type="text" class="form-control" name="password" placeholder="Password">
+            <span id="passwordErr" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="confirmpassword">Confirm Password </label>
+            <input type="password" class="form-control" name="confirmpassword">
+            <span id="confirmpasswordErr" class="text-danger"></span>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-success">Check</button>
+    </form>
+
+    <script>
+
+        function StrengthChecker() {
+           
+            var fname = document.reg_form.fname;
+            var email = document.reg_form.email;
+            var password = document.reg_form.password;
+            var confirmpassword=document.reg_form.confirmpassword;
+
+           
+
+            if (fname.value.length < 3 || fname.value.length > 23) {
+                document.getElementById('fnameErr').innerHTML = "Username must be between 3 to 23 chars";
+                fname.focus();
+                return false;
+            }
+            else {
+                document.getElementById('fnameErr').innerHTML = "";
+            }
+
+            if (email.value.length <= 0) {
+                document.getElementById('emailErr').innerHTML = "Email required";
+                email.focus();
+                return false;
+            }
+            else {
+                document.getElementById('emailErr').innerHTML = "";
+            }
+
+            
+            if ((/[" "]/.test(password.value)) || (!(/[A-Z]/.test(password.value))) || (!(/[a-z]/.test(password.value))) || (!(/[0-9]/.test(password.value))) || (!(/[!@#$%^*&()]/.test(password.value))) || (password.value.length < 8)) {
+                document.getElementById('passwordErr').innerHTML = "password should have 8 chars atleast 1 upper case , 1 lower case , 1 number ,1 special character ";
+                return false;
+            }else{
+                document.getElementById('passwordErr').innerHTML = "";
+            }
+
+            if (confirmpassword.value.length <= 0) {
+                document.getElementById('confirmpasswordErr').innerHTML = "Confirm Password required";
+                confirmpassword.focus();
+                return false;
+            }
+            else{
+                document.getElementById('confirmpasswordErr').innerHTML=""
+            }
+
+            if (confirmpassword.value != password.value) {
+                document.getElementById('confirmpasswordErr').innerHTML = "Confirm Password should be same as Password";
+                confirmpassword.focus();
+                return false;
+            }
+            else{
+                document.getElementById('confirmpasswordErr').innerHTML=""
+            }
+            
+            alert("Password Submitted");
+            
+
+        }
+    </script>
+</body>
+
+</html>
