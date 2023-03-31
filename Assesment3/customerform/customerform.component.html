@@ -1,0 +1,68 @@
+<div class="container col-md-6">
+<div class="register-form">
+    <h3 class="text-center">Company Info</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group1">
+            <label for="companyname">Company name</label>
+            <input type="text" formControlName="companyname"
+            class="form-control" [ngClass]="{ 'is-invalid':submitted && f['companyname'].errors}">
+            <div *ngIf="submitted && f['companyname'].errors" class="invalid-feedback">
+                <div *ngIf="f['companyname'].errors['required']" class="text-danger">Company Name is mandatory</div>
+                <div *ngIf="f['companyname'].errors['minlength']" class="text-danger">Company Name should be atleast 4 characters</div>
+                <div *ngIf="f['companyname'].errors['maxlength']" class="text-danger">Company Name should not exceed 40 characters</div>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group1">
+            <label for="email">Email</label>
+            <input type="email" formControlName="email"
+            class="form-control" [ngClass]="{'is-invalid':submitted && f['email'].errors}">
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']" class="text-danger">Email is mandatory</div>
+                <div *ngIf="f['email'].errors['email']" class="text-danger">Email should be valid </div>
+            </div>
+        </div>
+       <br>
+        <div class="form-group1">
+            <label for="phone">Phone number</label>
+            <input type="text" formControlName="phone"
+            class="form-control" [ngClass]="{ 'is-invalid':submitted && f['phone'].errors}">
+            <div *ngIf="submitted && f['phone'].errors" class="invalid-feedback">
+                <div *ngIf="f['phone'].errors['required']" class="text-danger">Phone number is mandatory</div>
+                <div *ngIf="f['phone'].errors['minlength']" class="text-danger">Phoneno should contain only 10 digit</div>
+                <div *ngIf="f['phone'].errors['maxlength']" class="text-danger">Phoneno should contain only 10 digit</div>
+            </div>
+        </div>
+        <br><br>
+
+        <div class="form-group">
+           <a>Machines <button type="button" (click)="addSkillFormGroup()" class="btn btn-primary" class="machinebtn"></button></a>
+        </div>
+        <ng-container *ngFor="let skillForm of skillsForms.controls;let i=index">
+            <div class="form-group">
+                <label [for]="'machine'+i" class="form-label">Machine Type</label>
+                <select class="form-select" id="validationDefault04">
+                    <option>Scissor Lift</option>
+                    <option>Wheelbarrow</option>
+                    <option>Can Opener</option>
+                    <option>Crane</option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label [for]="'amount'+i" class="form-label">Amount</label>
+                <input type="text" class="form-control" id="'amount'+i" formControlName="amount">
+                <div *ngIf="submitted && f['amount'].errors" class="invalid-feedback">
+                    <div *ngIf="f['amount'].errors['required']" class="text-danger">Amount is mandatory</div>
+                    <div *ngIf="f['amount'].errors['min']" class="text-danger">Amount Should be positive number </div>
+                </div>
+            </div><br>
+            <div>
+                <button class="btn btn-danger" type="button" (click)="removeskillFormGroup(i)">Delete</button>
+            </div>
+        </ng-container><br>
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
+</div>
+</div>
